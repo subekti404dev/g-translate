@@ -11,7 +11,7 @@ yarn add @subekti13/g-translate
 ```
 
 ## How to Use
-```bash
+```javascript
 const gtranslate = require("@subekti13/g-translate");
 
 # its asyncronous
