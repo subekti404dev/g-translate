@@ -58,7 +58,7 @@ function translate(text, config) {
                     resp = _a.sent();
                     data = resp.data;
                     arr = (data || "").match(/<span id="tw-answ-target-text">(.*?)<\/span>/);
-                    if (arr.length > 1) {
+                    if ((arr || []).length > 1) {
                         return [2 /*return*/, arr[1].trim()];
                     }
                     return [2 /*return*/, null];

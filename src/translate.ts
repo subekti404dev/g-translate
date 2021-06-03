@@ -22,7 +22,7 @@ export async function translate(
     /<span id="tw-answ-target-text">(.*?)<\/span>/
   );
 
-  if (arr.length > 1) {
+  if ((arr || []).length > 1) {
     return arr[1].trim();
   }
   return null;
