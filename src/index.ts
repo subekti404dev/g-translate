@@ -1,9 +1,7 @@
 import {languages} from './language';
 import {translate} from './translate';
 
-const module = {
+export {
     languages,
     translate
 }
-
-export default module;

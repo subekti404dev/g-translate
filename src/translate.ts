@@ -3,7 +3,7 @@ import axios from "axios";
 export async function translate(
   text: string,
   config: { from?: string; to?: string } = {}
-) {
+): Promise<string | null> {
   const from = config.from || "auto";
   const to = config.to || "id";
   const params = new URLSearchParams();
