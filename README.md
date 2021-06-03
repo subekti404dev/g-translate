@@ -14,7 +14,7 @@ yarn add @subekti13/g-translate
 ```javascript
 const gtranslate = require("@subekti13/g-translate");
 
-# its asyncronous
+// its asyncronous
 gtranslate.translate("Selamat Siang", {from:"id", to: "ja"})
     .then((result) => {
         console.log(result)
@@ -23,7 +23,7 @@ gtranslate.translate("Selamat Siang", {from:"id", to: "ja"})
         console.log(error)
     });
 
-# to get list of languages use this variable
+// to get list of languages use this variable
 console.log(gtranslate.languages)
 ```
 
