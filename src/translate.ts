@@ -1,9 +1,14 @@
 import axios from "axios";
 
+interface Result {
+  targetText?: string;
+  romanization?: string;
+}
+
 export async function translate(
   text: string,
   config: { from?: string; to?: string } = {}
-): Promise<string | null> {
+): Promise<Result> {
   const from = config.from || "auto";
   const to = config.to || "id";
   const params = new URLSearchParams();
@@ -18,11 +23,43 @@ export async function translate(
 
   const resp = await axios.post(url, params);
   const data = resp.data;
-  const arr = (data || "").match(
-    /<span id="tw-answ-target-text">(.*?)<\/span>/
-  );
+  const result: Result = {
+    targetText: undefined,
+    romanization: undefined,
+  };
+  // const tArr = (data || "").match(
+  //   /<span id="tw-answ-target-text">(.*?)<\/span>/
+  // );
+  // if ((tArr || []).length > 1) {
+  //   const data = tArr[1].trim()
+  //   if (data) result.targetText = data;
+  // }
 
-  if ((arr || []).length > 1) {
+  // const rArr = (data || "").match(
+  //   /<span id="tw-answ-romanization">(.*?)<\/span>/
+  // );
+  // if ((rArr || []).length > 1) {
+  //   const data = rArr[1].trim();
+  //   if (data) result.romanization = data;
+  // }
+  const targetText = getTextBetween(
+    data,
+    '<span id="tw-answ-target-text">',
+    "</span>"
+  );
+  const romanization = getTextBetween(
+    data,
+    '<span id="tw-answ-romanization">',
+    "</span>"
+  );
+  if (targetText) result.targetText = targetText;
+  if (romanization) result.romanization = romanization;
+  return result;
+}
+
+function getTextBetween(text: string, a: string, b: string): string | null {
+  const arr = (text || "").match(`${a}(.*?)${b}`);
+  if (arr && arr.length > 1) {
     return arr[1].trim();
   }
   return null;

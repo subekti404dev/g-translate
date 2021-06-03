@@ -44,7 +44,7 @@ var axios_1 = __importDefault(require("axios"));
 function translate(text, config) {
     if (config === void 0) { config = {}; }
     return __awaiter(this, void 0, void 0, function () {
-        var from, to, params, url, resp, data, arr;
+        var from, to, params, url, resp, data, result, targetText, romanization;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -57,13 +57,26 @@ function translate(text, config) {
                 case 1:
                     resp = _a.sent();
                     data = resp.data;
-                    arr = (data || "").match(/<span id="tw-answ-target-text">(.*?)<\/span>/);
-                    if ((arr || []).length > 1) {
-                        return [2 /*return*/, arr[1].trim()];
-                    }
-                    return [2 /*return*/, null];
+                    result = {
+                        targetText: undefined,
+                        romanization: undefined,
+                    };
+                    targetText = getTextBetween(data, '<span id="tw-answ-target-text">', "</span>");
+                    romanization = getTextBetween(data, '<span id="tw-answ-romanization">', "</span>");
+                    if (targetText)
+                        result.targetText = targetText;
+                    if (romanization)
+                        result.romanization = romanization;
+                    return [2 /*return*/, result];
             }
         });
     });
 }
 exports.translate = translate;
+function getTextBetween(text, a, b) {
+    var arr = (text || "").match(a + "(.*?)" + b);
+    if (arr && arr.length > 1) {
+        return arr[1].trim();
+    }
+    return null;
+}
