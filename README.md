@@ -1,3 +1,5 @@
+[![view on npm](http://img.shields.io/npm/v/@subekti13/g-translate.svg)](https://www.npmjs.org/package/@subekti13/g-translate)
+[![npm module downloads per month](http://img.shields.io/npm/dm/@subekti13/g-translate.svg)](https://www.npmjs.org/package/@subekti13/g-translate)
 # G-Translate
 Just another nodejs module to translate text from one language to another language. Its fetches data from google translate by the way.
 
