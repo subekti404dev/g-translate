@@ -44,15 +44,16 @@ var axios_1 = __importDefault(require("axios"));
 function translate(text, config) {
     if (config === void 0) { config = {}; }
     return __awaiter(this, void 0, void 0, function () {
-        var from, to, params, url, resp, data, result, targetText, romanization;
+        var from, to, params, url, resp, data, result, targetText, romanization, error_1, errMessage;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    _a.trys.push([0, 2, , 3]);
                     from = config.from || "auto";
                     to = config.to || "id";
                     params = new URLSearchParams();
                     params.append("async", "translate,sl:" + from + ",tl:" + to + ",st:" + encodeURIComponent(text) + ",id:1622684736837,qc:true,ac:false,_id:tw-async-translate,_pms:s,_fmt:pc");
-                    url = "https://www.google.com/async/translate?vet=12ahUKEwjNmoPlqvrwAhXSbn0KHbMrCZIQqDgwAHoECAIQJg..i&ei=SjO4YM3NE9Ld9QOz16SQCQ&yv=3";
+                    url = "https://www.google.com/async/translate";
                     return [4 /*yield*/, axios_1.default.post(url, params, {
                             headers: {
                                 "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36",
@@ -72,6 +73,14 @@ function translate(text, config) {
                     if (romanization)
                         result.romanization = romanization;
                     return [2 /*return*/, result];
+                case 2:
+                    error_1 = _a.sent();
+                    errMessage = error_1.message;
+                    if (error_1.response && error_1.response.data) {
+                        errMessage = error_1.response.data;
+                    }
+                    throw new Error(errMessage);
+                case 3: return [2 /*return*/];
             }
         });
     });
@@ -84,4 +93,4 @@ function getTextBetween(text, a, b) {
     }
     return null;
 }
-// translate("selamat siang", { to: "zh-CN" }).then(console.log);
+// translate("selamat siang", { to: "ja" }).then(console.log);

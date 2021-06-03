@@ -15,9 +15,22 @@ yarn add @subekti13/g-translate
 const gtranslate = require("@subekti13/g-translate");
 
 # its asyncronous
-const translated = await gtranslate.translate("Selamat Pagi", {from:"id", to: "en"});
+gtranslate.translate("Selamat Siang", {from:"id", to: "ja"})
+    .then((result) => {
+        console.log(result)
+    })
+    .catch(err => {
+        console.log(error)
+    });
 
 # to get list of languages use this variable
-gtranslate.languages
+console.log(gtranslate.languages)
 ```
 
+## Response Format
+```json
+  { 
+    "targetText": "こんにちは",
+    "romanization": "Kon'nichiwa" 
+  }
+```

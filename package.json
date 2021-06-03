@@ -1,6 +1,6 @@
 {
   "name": "@subekti13/g-translate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Just another module to translate text (Scrapped from Google Translate)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,13 +8,18 @@
     "build": "tsc",
     "prepublish": "npm run build"
   },
-  "keywords": ["google translate", "translate", "translator"],
+  "keywords": [
+    "google translate",
+    "translate",
+    "translator"
+  ],
   "author": "Urip Subekti",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/node": "^15.9.0",
     "typescript": "^4.3.2"
   }
