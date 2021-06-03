@@ -8,8 +8,8 @@
     "build": "tsc",
     "prepublish": "npm run build"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["google translate", "translate", "translator"],
+  "author": "Urip Subekti",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1"
