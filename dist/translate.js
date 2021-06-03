@@ -53,7 +53,11 @@ function translate(text, config) {
                     params = new URLSearchParams();
                     params.append("async", "translate,sl:" + from + ",tl:" + to + ",st:" + encodeURIComponent(text) + ",id:1622684736837,qc:true,ac:false,_id:tw-async-translate,_pms:s,_fmt:pc");
                     url = "https://www.google.com/async/translate?vet=12ahUKEwjNmoPlqvrwAhXSbn0KHbMrCZIQqDgwAHoECAIQJg..i&ei=SjO4YM3NE9Ld9QOz16SQCQ&yv=3";
-                    return [4 /*yield*/, axios_1.default.post(url, params)];
+                    return [4 /*yield*/, axios_1.default.post(url, params, {
+                            headers: {
+                                "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36",
+                            },
+                        })];
                 case 1:
                     resp = _a.sent();
                     data = resp.data;
@@ -76,7 +80,8 @@ exports.translate = translate;
 function getTextBetween(text, a, b) {
     var arr = (text || "").match(a + "(.*?)" + b);
     if (arr && arr.length > 1) {
-        return arr[1].trim();
+        return arr[1];
     }
     return null;
 }
+// translate("selamat siang", { to: "zh-CN" }).then(console.log);

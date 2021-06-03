@@ -21,27 +21,18 @@ export async function translate(
   const url =
     "https://www.google.com/async/translate?vet=12ahUKEwjNmoPlqvrwAhXSbn0KHbMrCZIQqDgwAHoECAIQJg..i&ei=SjO4YM3NE9Ld9QOz16SQCQ&yv=3";
 
-  const resp = await axios.post(url, params);
+  const resp = await axios.post(url, params, {
+    headers: {
+      "user-agent":
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36",
+    },
+  });
   const data = resp.data;
   const result: Result = {
     targetText: undefined,
     romanization: undefined,
   };
-  // const tArr = (data || "").match(
-  //   /<span id="tw-answ-target-text">(.*?)<\/span>/
-  // );
-  // if ((tArr || []).length > 1) {
-  //   const data = tArr[1].trim()
-  //   if (data) result.targetText = data;
-  // }
 
-  // const rArr = (data || "").match(
-  //   /<span id="tw-answ-romanization">(.*?)<\/span>/
-  // );
-  // if ((rArr || []).length > 1) {
-  //   const data = rArr[1].trim();
-  //   if (data) result.romanization = data;
-  // }
   const targetText = getTextBetween(
     data,
     '<span id="tw-answ-target-text">',
@@ -60,7 +51,9 @@ export async function translate(
 function getTextBetween(text: string, a: string, b: string): string | null {
   const arr = (text || "").match(`${a}(.*?)${b}`);
   if (arr && arr.length > 1) {
-    return arr[1].trim();
+    return arr[1];
   }
   return null;
 }
+
+// translate("selamat siang", { to: "zh-CN" }).then(console.log);
