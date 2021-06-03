@@ -3,14 +3,14 @@ Just another nodejs module to translate text from one language to another langua
 
 ## How to Install
 ```bash
-npm install g-translate
+npm install @subekti13/g-translate
 # or
-yarn add g-translate
+yarn add @subekti13/g-translate
 ```
 
 ## How to Use
 ```bash
-const gtranslate = require("g-translate");
+const gtranslate = require("@subekti13/g-translate");
 
 # its asyncronous
 const translated = await gtranslate.translate("Selamat Pagi", {from:"id", to: "en"});

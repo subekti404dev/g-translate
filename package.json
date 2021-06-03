@@ -1,5 +1,5 @@
 {
-  "name": "g-translate",
+  "name": "@subekti13/g-translate",
   "version": "1.0.0",
   "description": "Just another module to translate text (Scrapped from Google Translate)",
   "main": "dist/index.js",
