@@ -56,11 +56,12 @@ export async function translate(
 }
 
 function getTextBetween(text: string, a: string, b: string): string | null {
-  const arr = (text || "").match(`${a}(.*?)${b}`);
+  const arr = (text || "").split(a);
   if (arr && arr.length > 1) {
-    return arr[1];
+    const arr2 = arr[1].split(b);
+    return arr2[0];
   }
   return null;
 }
 
-// translate("selamat siang", { to: "ja" }).then(console.log);
+translate("Selamat Siang", { to: "ko" }).then(console.log);
