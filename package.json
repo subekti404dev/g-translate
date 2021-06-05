@@ -1,6 +1,6 @@
 {
   "name": "@subekti13/g-translate",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Just another module to translate text (Scrapped from Google Translate)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

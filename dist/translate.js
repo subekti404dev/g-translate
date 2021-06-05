@@ -87,10 +87,11 @@ function translate(text, config) {
 }
 exports.translate = translate;
 function getTextBetween(text, a, b) {
-    var arr = (text || "").match(a + "(.*?)" + b);
+    var arr = (text || "").split(a);
     if (arr && arr.length > 1) {
-        return arr[1];
+        var arr2 = arr[1].split(b);
+        return arr2[0];
     }
     return null;
 }
-// translate("selamat siang", { to: "ja" }).then(console.log);
+translate("Selamat Siang", { to: "ko" }).then(console.log);
